@@ -18,7 +18,7 @@ const rootReducer = (state = initState, action) => {
                ...state,
                 todoList: [
                     ...state.todoList,
-                   { id: 3, name: 'Learn Java', completed: false, priority: 'Low' }
+                   action.payload
                 ]
             }
         default:
