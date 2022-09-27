@@ -3,10 +3,12 @@ import {
   todoRemainingSelector, 
  } from '../../redux/selectors';
 import { useDispatch, useSelector } from 'react-redux';
-import { addTodo } from '../../redux/actions';
 import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
 import Todo from '../Todo';
+
+// import { addTodo } from '../../redux/actions';
+import todoListSlice from './todoSlice';
 
 
 export default function TodoList() {
@@ -16,8 +18,19 @@ export default function TodoList() {
   const dispatch = useDispatch();
   const todoList = useSelector(todoRemainingSelector);
   
+  // const handleAdd = () => {
+  //   dispatch(addTodo({
+  //     id: uuidv4(),
+  //     name: todoName,
+  //     priority: priority,
+  //     completed: false
+  //   }))
+  //   setTodoName('')
+  //   setPriority('Medium')
+  // }
+
   const handleAdd = () => {
-    dispatch(addTodo({
+    dispatch(todoListSlice.actions.addTodo({
       id: uuidv4(),
       name: todoName,
       priority: priority,
@@ -26,7 +39,6 @@ export default function TodoList() {
     setTodoName('')
     setPriority('Medium')
   }
-
   const handleInputChange = (e) => {
     setTodoName(e.target.value)
   }
